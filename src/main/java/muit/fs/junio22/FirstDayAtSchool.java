@@ -23,7 +23,6 @@ public class FirstDayAtSchool {
 	public void prepareMyBag() {
 		schoolbag.put("Pens", 1);
 		schoolbag.put("Notebooks", 1);
-        schoolbag.put("Sharpener", 1);
 	}
 
 	public void addThings(String thingName, int number) {
