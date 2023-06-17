@@ -8,8 +8,9 @@
  plugins {
     id 'java-library'
     id 'eclipse'
+    id 'maven-publish'
 }
-version = '0.0.1'
+version = '0.0'
 
 task defaultProperties { 
     println "Project: $project" 
@@ -42,4 +43,27 @@ test {
 	testLogging {
 		events "passed", "skipped", "failed"
 	}
+}
+
+publishing {
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/angrodboh/Julio2023-2")         
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_LOGIN")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PACKAGES")
+            }
+        }
+    }
+    publications {
+        gpr(MavenPublication) {
+            groupId = 'muit.fs.junio22'
+            artifactId = 'junio2022'
+            version = '0.1'
+
+            from components.java
+        }
+       
+    }
 }
